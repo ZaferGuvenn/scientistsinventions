@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="listener"
+            type="com.lafimsize.bilimnsanlarvebulular.adapter.IOnClickListener" />
+
+        <variable
+            name="inventions"
+            type="com.lafimsize.bilimnsanlarvebulular.model.Inventions" />
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:onClick="@{listener::onItemClicked}"
+    >
+
+    <ImageView
+        android:id="@+id/InventionsImage"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="Invention Image" />
+
+    <TextView
+        android:id="@+id/InventionsName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:paddingHorizontal="10dp"
+        android:text="@{inventions.inventionName}"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/InventionsImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/InventionsImage"
+        app:layout_constraintTop_toTopOf="@+id/InventionsImage" />
+
+    <TextView
+        android:id="@+id/InventionsDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@{inventions.inventionDate}"
+        android:textSize="20sp"
+
+        app:layout_constraintStart_toStartOf="@+id/InventionsName"
+        app:layout_constraintEnd_toEndOf="@+id/InventionsName"
+        app:layout_constraintTop_toBottomOf="@+id/InventionsName"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
