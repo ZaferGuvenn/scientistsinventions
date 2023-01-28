@@ -1,4 +1,4 @@
-package com.lafimsize.bilimnsanlarvebulular.modelview
+package com.lafimsize.bilimnsanlarvebulular.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -13,5 +13,10 @@ abstract class BaseViewModel(application: Application):AndroidViewModel(applicat
 
     override val coroutineContext: CoroutineContext
         get() = job+Dispatchers.Main
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
+    }
 
 }

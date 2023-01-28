@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.adapter.ScientistsAdapter
 import com.lafimsize.bilimnsanlarvebulular.databinding.FragmentScientistsBinding
-import com.lafimsize.bilimnsanlarvebulular.model.Scientists
-import com.lafimsize.bilimnsanlarvebulular.modelview.ScientistsViewModel
+import com.lafimsize.bilimnsanlarvebulular.viewmodel.ScientistsViewModel
 
 
 class ScientistsFragment : Fragment() {
@@ -53,7 +52,7 @@ class ScientistsFragment : Fragment() {
 
     private fun observeLiveData(){
 
-        viewModel.scientistsList.observe(viewLifecycleOwner){
+        viewModel.mutableScientistsList.observe(viewLifecycleOwner){
 
 
             it?.let {

@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/descriptionFragment"
-        android:name="com.lafimsize.bilimnsanlarvebulular.modelview.DescriptionFragment"
+        android:name="com.lafimsize.bilimnsanlarvebulular.viewmodel.DescriptionFragment"
         android:label="fragment_description"
         tools:layout="@layout/fragment_description" >
         <action

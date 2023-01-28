@@ -4,8 +4,9 @@ import androidx.annotation.Keep
 import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
-@Keep
+
 @Entity
+@Keep
 class Scientists(
 
     @SerializedName("scientists_name")
@@ -19,11 +20,17 @@ class Scientists(
 
 )
 
+@Entity
+@Keep
 class Inventions(
 
+    @SerializedName("inventions_name")
     val inventionName:String,
+    @SerializedName("inventions_date")
     val inventionDate:String,
+    @SerializedName("inventions_image")
     val inventionImage:String,
-    val inventionDescriptions:String
+    @SerializedName("inventions_description")
+    val inventionDescription:String
 
 )

@@ -4,10 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.databinding.ScientistsRowBinding
 import com.lafimsize.bilimnsanlarvebulular.model.Scientists
+import com.lafimsize.bilimnsanlarvebulular.util.downloadWithGlide
+import com.lafimsize.bilimnsanlarvebulular.view.ScientistsFragment
+import com.lafimsize.bilimnsanlarvebulular.view.ScientistsFragmentDirections
 
 class ScientistsAdapter(val scientistsList:ArrayList<Scientists>):RecyclerView.Adapter<ScientistsAdapter.ScientistsViewHolder>(),
     IOnClickListener {
@@ -29,6 +33,8 @@ class ScientistsAdapter(val scientistsList:ArrayList<Scientists>):RecyclerView.A
     override fun onBindViewHolder(holder: ScientistsViewHolder, position: Int) {
         holder.binding.scientists=scientistsList[position]
         holder.binding.listener=this
+
+        holder.binding.ScientistsImage.downloadWithGlide(scientistsList.get(position).scientistsImage)
     }
 
     override fun getItemCount(): Int {
@@ -42,7 +48,9 @@ class ScientistsAdapter(val scientistsList:ArrayList<Scientists>):RecyclerView.A
     }
 
     override fun onItemClicked(view: View) {
-        println(binding.ScientistsName)
+        val uUid=0L
+        val action=ScientistsFragmentDirections.actionScientistsFragmentToInventionsFragment(uUid)
+        Navigation.findNavController(view).navigate(action)
     }
 
 

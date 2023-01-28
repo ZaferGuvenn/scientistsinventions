@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.databinding.InventionsRowBinding
 import com.lafimsize.bilimnsanlarvebulular.model.Inventions
+import com.lafimsize.bilimnsanlarvebulular.util.downloadWithGlide
 
 class InventionsAdapter(val inventionsList:ArrayList<Inventions>): RecyclerView.Adapter<InventionsAdapter.InventionsViewHolder>(),IOnClickListener {
 
@@ -27,6 +28,8 @@ class InventionsAdapter(val inventionsList:ArrayList<Inventions>): RecyclerView.
     override fun onBindViewHolder(holder: InventionsViewHolder, position: Int) {
         holder.binding.inventions=inventionsList[position]
         holder.binding.listener=this
+
+        holder.binding.InventionsImage.downloadWithGlide(inventionsList.get(position).inventionImage)
     }
 
     override fun getItemCount(): Int {

@@ -1,4 +1,4 @@
-package com.lafimsize.bilimnsanlarvebulular.modelview
+package com.lafimsize.bilimnsanlarvebulular.viewmodel
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
