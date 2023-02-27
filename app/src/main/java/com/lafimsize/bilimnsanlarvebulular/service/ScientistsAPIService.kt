@@ -19,7 +19,7 @@ class ScientistsAPIService {
         return api.getScientists()
     }
 
-    fun getAllInventions():Single<List<Inventions>>{
-        return api.getInventions()
+    fun getAllInventions(inventionsName:String):Single<List<Inventions>>{
+        return api.getInventions(inventionsName)
     }
 }

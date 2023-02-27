@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/scientistsFragment"
         android:name="com.lafimsize.bilimnsanlarvebulular.view.ScientistsFragment"
-        android:label="fragment_scientists"
-        tools:layout="@layout/fragment_scientists" >
+        android:label="Bilim İnsanları"
+        tools:layout="@layout/fragment_scientists">
         <action
             android:id="@+id/action_scientistsFragment_to_inventionsFragment"
             app:destination="@id/inventionsFragment" />
@@ -17,8 +17,7 @@
     <fragment
         android:id="@+id/inventionsFragment"
         android:name="com.lafimsize.bilimnsanlarvebulular.view.InventionsFragment"
-        android:label="fragment_inventions"
-        tools:layout="@layout/fragment_inventions" >
+        tools:layout="@layout/fragment_inventions">
         <action
             android:id="@+id/action_inventionsFragment_to_scientistsFragment"
             app:destination="@id/scientistsFragment" />
@@ -28,14 +27,24 @@
         <action
             android:id="@+id/action_inventionsFragment_to_descriptionFragment"
             app:destination="@id/descriptionFragment" />
+        <argument
+            android:name="scientistsNmae"
+            android:defaultValue="Nikola-Tesla"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/descriptionFragment"
-        android:name="com.lafimsize.bilimnsanlarvebulular.viewmodel.DescriptionFragment"
-        android:label="fragment_description"
-        tools:layout="@layout/fragment_description" >
+        android:name="com.lafimsize.bilimnsanlarvebulular.view.DescriptionFragment"
+        tools:layout="@layout/fragment_description">
         <action
             android:id="@+id/action_descriptionFragment_to_inventionsFragment"
             app:destination="@id/inventionsFragment" />
+        <argument
+            android:name="inventions"
+            app:argType="com.lafimsize.bilimnsanlarvebulular.model.Inventions" />
+        <argument
+            android:name="scientistsName"
+            android:defaultValue='""'
+            app:argType="string" />
     </fragment>
 </navigation>

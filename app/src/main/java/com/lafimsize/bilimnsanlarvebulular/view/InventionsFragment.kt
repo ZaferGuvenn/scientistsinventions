@@ -1,12 +1,16 @@
 package com.lafimsize.bilimnsanlarvebulular.view
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.adapter.InventionsAdapter
@@ -19,7 +23,10 @@ class InventionsFragment : Fragment() {
 
     private lateinit var viewModel:InventionsViewModel
     private lateinit var binding:FragmentInventionsBinding
-    private var adapter=InventionsAdapter(arrayListOf())
+    private lateinit var adapter:InventionsAdapter
+
+    private var uuid=0L
+    private var scientistsName=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,23 +47,20 @@ class InventionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel=ViewModelProvider(this).get(InventionsViewModel::class.java)
-        viewModel.getInventionsFromRetrofit()
 
-        binding.recyclerView.layoutManager=LinearLayoutManager(context)
-        binding.recyclerView.adapter=adapter
-
-
-        observeAllDatas()
+        argumentTransactions()
+        bindingTransactions()
+        observeAllData()
 
     }
 
-    fun observeAllDatas(){
+    private fun observeAllData(){
 
         viewModel.mutableInventionsList.observe(viewLifecycleOwner){
 
             it?.let {
                 adapter.updateInventions(it)
+                binding.recyclerView.layoutAnimation=AnimationUtils.loadLayoutAnimation(context,R.anim.layout_animation2)
 
                 binding.recyclerView.visibility=View.VISIBLE
                 binding.inventionsErrorMsg.visibility=View.GONE
@@ -83,12 +87,93 @@ class InventionsFragment : Fragment() {
                 if (it){
                     binding.recyclerView.visibility=View.GONE
                     binding.inventionsErrorMsg.visibility=View.VISIBLE
+                    binding.renewInventions.visibility=View.VISIBLE
                     binding.inventionsProgressLoading.visibility=View.GONE
                 }else{
                     binding.inventionsErrorMsg.visibility=View.GONE
+                    binding.renewInventions.visibility=View.GONE
+
                 }
             }
         }
 
+        viewModel.offlineBtnIsVisible.observe(viewLifecycleOwner){
+            it?.let {
+                if (it){
+                    binding.offlineBtnInventions.visibility=View.VISIBLE
+                }else{
+                    binding.offlineBtnInventions.visibility=View.GONE
+                }
+            }
+        }
+
+        /*viewModel.alertDialog.observe(viewLifecycleOwner){
+            it?.let {
+                if (it){
+                    showAlertDialogMsg()
+                }
+            }
+        }*/
+
+
+
     }
+
+    private fun argumentTransactions(){
+        arguments?.let {
+            uuid=InventionsFragmentArgs.fromBundle(it).scientistsUuid
+            scientistsName=InventionsFragmentArgs.fromBundle(it).scientistsNmae
+        }
+
+        val fragmentLabel=scientistsName.replace("-"," ")+" buluşları"
+        (activity as AppCompatActivity).supportActionBar?.title = fragmentLabel
+
+        viewModel= ViewModelProvider(this)[InventionsViewModel::class.java]
+        viewModel.getAllData(scientistsName)
+
+        adapter= InventionsAdapter(arrayListOf(),scientistsName)
+    }
+
+    private fun bindingTransactions(){
+        binding.recyclerView.layoutManager=LinearLayoutManager(context)
+        binding.recyclerView.adapter=adapter
+
+        binding.swipeRefreshInventions.setOnRefreshListener {
+            binding.swipeRefreshInventions.isRefreshing=false
+            binding.offlineBtnInventions.visibility=View.GONE
+            viewModel.getInventionsFromRetrofit(scientistsName,true)
+        }
+
+        binding.renewInventions.setOnClickListener {
+
+            binding.renewInventions.visibility=View.GONE
+            binding.offlineBtnInventions.visibility=View.GONE
+            viewModel.getInventionsFromRetrofit(scientistsName,true)
+        }
+
+        binding.offlineBtnInventions.setOnClickListener {
+
+
+            binding.renewInventions.visibility=View.GONE
+            binding.offlineBtnInventions.visibility=View.GONE
+            viewModel.getInventionsFromRoom(scientistsName)
+        }
+
+    }
+
+    /*private fun showAlertDialogMsg(){
+
+        val alertDialog= AlertDialog.Builder(context)
+
+        alertDialog.setTitle("Çevrimdışı Mod Başlatılamadı!")
+        alertDialog.setMessage("Önceden yüklenmiş hiçbir veri bulunamadı. Lütfen internet bağlantınızı aktifleştirip tekrar deneyin!")
+        alertDialog.setCancelable(false)
+        alertDialog.setPositiveButton("Yeniden Dene"){ _ , _ ->
+            viewModel.getAllData(scientistsName)
+        }
+        alertDialog.show()
+
+
+    }*/
+
 }

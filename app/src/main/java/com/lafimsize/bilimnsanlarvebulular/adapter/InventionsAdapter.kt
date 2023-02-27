@@ -1,16 +1,17 @@
 package com.lafimsize.bilimnsanlarvebulular.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.databinding.InventionsRowBinding
 import com.lafimsize.bilimnsanlarvebulular.model.Inventions
 import com.lafimsize.bilimnsanlarvebulular.util.downloadWithGlide
+import com.lafimsize.bilimnsanlarvebulular.view.InventionsFragmentDirections
 
-class InventionsAdapter(val inventionsList:ArrayList<Inventions>): RecyclerView.Adapter<InventionsAdapter.InventionsViewHolder>(),IOnClickListener {
+class InventionsAdapter(val inventionsList:ArrayList<Inventions>,val inventionScientistsName:String): RecyclerView.Adapter<InventionsAdapter.InventionsViewHolder>() {
 
     private lateinit var binding:InventionsRowBinding
 
@@ -27,9 +28,15 @@ class InventionsAdapter(val inventionsList:ArrayList<Inventions>): RecyclerView.
 
     override fun onBindViewHolder(holder: InventionsViewHolder, position: Int) {
         holder.binding.inventions=inventionsList[position]
-        holder.binding.listener=this
-
         holder.binding.InventionsImage.downloadWithGlide(inventionsList.get(position).inventionImage)
+
+        holder.binding.inventionsRowConstraint.setOnClickListener {
+            val selectedInventions=inventionsList[position]
+
+            val action=InventionsFragmentDirections.actionInventionsFragmentToDescriptionFragment(selectedInventions,inventionScientistsName)
+            Navigation.findNavController(it).navigate(action)
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -43,8 +50,6 @@ class InventionsAdapter(val inventionsList:ArrayList<Inventions>): RecyclerView.
         notifyDataSetChanged()
     }
 
-    override fun onItemClicked(view: View) {
 
-    }
 
 }

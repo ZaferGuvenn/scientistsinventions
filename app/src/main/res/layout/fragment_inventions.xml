@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
+
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshInventions"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -43,15 +46,46 @@
                 android:id="@+id/inventionsErrorMsg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Error! Try again later!"
+                android:text="Hata! İnternet bağlantısı yok!"
                 android:textSize="20sp"
                 android:visibility="gone"
 
+                app:layout_constraintTop_toBottomOf="@+id/renewInventions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                android:layout_marginTop="2dp"
+                />
+
+            <ImageButton
+                android:id="@+id/renewInventions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_autorenew_24"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+
+                android:visibility="gone"
                 />
+
+            <Button
+                android:id="@+id/offlineBtnInventions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Çevrimdışı Mod"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
+                android:layout_marginBottom="15dp"/>
+
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

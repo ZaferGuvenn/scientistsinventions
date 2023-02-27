@@ -1,12 +1,18 @@
 package com.lafimsize.bilimnsanlarvebulular.view
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.adapter.ScientistsAdapter
@@ -23,6 +29,10 @@ class ScientistsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel=ViewModelProvider(this).get(ScientistsViewModel::class.java)
+        viewModel.getAllData()
+
+
     }
 
     override fun onCreateView(
@@ -38,14 +48,9 @@ class ScientistsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel=ViewModelProvider(this).get(ScientistsViewModel::class.java)
-        viewModel.refreshDataRetrofit()
-
-        binding.recyclerViewScientists.adapter=adapter
-        binding.recyclerViewScientists.layoutManager=LinearLayoutManager(context)
 
 
-
+        bindingTransactions()
         observeLiveData()
 
     }
@@ -57,10 +62,12 @@ class ScientistsFragment : Fragment() {
 
             it?.let {
                 adapter.updateScientists(it)
+                binding.recyclerViewScientists.layoutAnimation=AnimationUtils.loadLayoutAnimation(context,R.anim.layout_animation)
 
                 binding.recyclerViewScientists.visibility=View.VISIBLE
                 binding.scientistsErrorMsg.visibility=View.GONE
                 binding.scientistsProgressing.visibility=View.GONE
+
             }
 
         }
@@ -69,6 +76,8 @@ class ScientistsFragment : Fragment() {
             it?.let {
                 if (it){
                     binding.scientistsErrorMsg.visibility=View.GONE
+                    binding.offlineBtn.visibility=View.GONE
+                    binding.renewScientists.visibility=View.GONE
                     binding.scientistsProgressing.visibility=View.VISIBLE
                 }else{
                     binding.scientistsProgressing.visibility=View.GONE
@@ -82,12 +91,64 @@ class ScientistsFragment : Fragment() {
                     binding.recyclerViewScientists.visibility=View.GONE
                     binding.scientistsErrorMsg.visibility=View.VISIBLE
                     binding.scientistsProgressing.visibility=View.GONE
+                    binding.renewScientists.visibility=View.VISIBLE
+                    binding.offlineBtn.visibility=View.VISIBLE
                 }else{
+                    binding.renewScientists.visibility=View.GONE
+                    binding.offlineBtn.visibility=View.GONE
                     binding.scientistsErrorMsg.visibility=View.GONE
                 }
             }
         }
 
+        viewModel.alertDialog.observe(viewLifecycleOwner){
+            it?.let {
+                if (it){
+                    showAlertDialogMsg()
+                }
+            }
+        }
+
+    }
+
+    private fun bindingTransactions(){
+
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.recyclerViewScientists.adapter=adapter
+        binding.recyclerViewScientists.layoutManager=LinearLayoutManager(context)
+
+        binding.swipeRefresh.setOnRefreshListener {
+
+            viewModel.refreshDataRetrofit()
+            binding.swipeRefresh.isRefreshing=false
+        }
+
+        binding.renewScientists.setOnClickListener {
+            binding.renewScientists.visibility=View.GONE
+            binding.offlineBtn.visibility=View.GONE
+            viewModel.refreshDataRetrofit()
+
+        }
+
+        binding.offlineBtn.setOnClickListener {
+            binding.renewScientists.visibility=View.GONE
+            binding.offlineBtn.visibility=View.GONE
+            viewModel.getDataFromRoom()
+        }
+    }
+
+
+    private fun showAlertDialogMsg(){
+        val alertDialog= AlertDialog.Builder(context)
+
+        alertDialog.setTitle("Çevrimdışı Mod Başlatılamadı!")
+        alertDialog.setMessage("Önceden yüklenmiş hiçbir veri bulunamadı. Lütfen internet bağlantınızı aktifleştirip tekrar deneyin!")
+        alertDialog.setCancelable(false)
+        alertDialog.setPositiveButton("Yeniden Dene"){ _ , _ ->
+            viewModel.getAllData()
+        }
+        alertDialog.show()
     }
 
 }

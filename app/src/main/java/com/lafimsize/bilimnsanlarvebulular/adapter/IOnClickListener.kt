@@ -2,7 +2,7 @@ package com.lafimsize.bilimnsanlarvebulular.adapter
 
 import android.view.View
 
-interface IOnClickListener {
+interface IOnClickListener:View.OnClickListener {
 
     fun onItemClicked(view:View)
 }
