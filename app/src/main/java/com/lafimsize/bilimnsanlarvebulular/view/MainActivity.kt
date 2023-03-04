@@ -3,11 +3,13 @@ package com.lafimsize.bilimnsanlarvebulular.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.databinding.ActivityMainBinding
+import com.lafimsize.bilimnsanlarvebulular.databinding.FragmentMenuBinding
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:backgroundTint="#2196F3"
+            android:layout_margin="20dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:id="@+id/backColorCont"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:background="#FFEB3B"
+                >
+
+                <include
+                    android:id="@+id/cSlideInclude"
+
+                    layout="@layout/slidecontributor"/>
+
+
+                <TextView
+                    android:id="@+id/cNameTV"
+
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="Bilim İnsanları"
+
+
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:alpha="1"
+
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
