@@ -44,7 +44,7 @@ class VPAdapter(val cImages:ArrayList<Int>):RecyclerView.Adapter<VPAdapter.VPVie
                     p=0
                 }
                 binding.slideIV.setImageResource(cImages.get(p))
-                val randomTime=(1000L..4000L).random()
+                val randomTime=(2000L..4000L).random()
                 delay(randomTime)
                 println("random time is= "+randomTime)
                 p=p+1
