@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:background="#D30074FF"
+                android:background="#7EBDC2"
                 >
 
 
@@ -34,7 +34,7 @@
                     android:paddingVertical="30dp"
                     android:text="Burası duyurular bölümüdür her türlü duyuru veya görsel internetten çekilip burada gösterilecektir!"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
+                    android:textColor="#FFFFFF"
                     android:textSize="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
