@@ -18,6 +18,9 @@ class VPAdapter(val cImages:ArrayList<Int>):RecyclerView.Adapter<VPAdapter.VPVie
     private lateinit var annimm3: Animation
 
     private lateinit var annimationsList: List<Animation>
+
+    private lateinit var jobS:Job
+
     class VPViewHolder(val binding: SlidecpicturesBinding):RecyclerView.ViewHolder(binding.root){
 
 
@@ -50,8 +53,8 @@ class VPAdapter(val cImages:ArrayList<Int>):RecyclerView.Adapter<VPAdapter.VPVie
     private fun setSlide(position: Int){
         var p=position
 
-        val jobS=CoroutineScope(Dispatchers.Default).launch {
-            while (true){
+        jobS=CoroutineScope(Dispatchers.Default).launch {
+            while (myJobIsWork.isWork){
                 if (p==cImages.size){
                     p=0
                 }
@@ -60,7 +63,7 @@ class VPAdapter(val cImages:ArrayList<Int>):RecyclerView.Adapter<VPAdapter.VPVie
                 binding.slideIV.startAnimation(randomAnnimation)
                 val randomTime=(2000L..4000L).random()
                 delay(randomTime)
-
+                println(randomTime)
                 p=p+1
             }
         }

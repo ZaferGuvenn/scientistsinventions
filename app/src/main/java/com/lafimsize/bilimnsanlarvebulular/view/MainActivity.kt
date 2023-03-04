@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.lafimsize.bilimnsanlarvebulular.R
+import com.lafimsize.bilimnsanlarvebulular.adapter.myJobIsWork
 import com.lafimsize.bilimnsanlarvebulular.databinding.ActivityMainBinding
 import com.lafimsize.bilimnsanlarvebulular.databinding.FragmentMenuBinding
 
@@ -46,11 +47,11 @@ class MainActivity : AppCompatActivity() {
 
         //NavigationUI.navigateUp(navigationController,null)
 
+
+
         onBackPressedDispatcher.onBackPressed()
+
         return false
     }
-
-
-
 
 }

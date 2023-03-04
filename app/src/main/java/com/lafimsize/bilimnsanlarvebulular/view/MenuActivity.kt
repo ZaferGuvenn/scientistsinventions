@@ -19,8 +19,10 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.lafimsize.bilimnsanlarvebulular.R
+import com.lafimsize.bilimnsanlarvebulular.adapter.ContributionsAdapter
 import com.lafimsize.bilimnsanlarvebulular.adapter.ScientistsAdapter
 import com.lafimsize.bilimnsanlarvebulular.adapter.VPAdapter
+import com.lafimsize.bilimnsanlarvebulular.adapter.myJobIsWork
 import com.lafimsize.bilimnsanlarvebulular.databinding.ActivityMenuBinding
 import kotlinx.coroutines.*
 
@@ -53,6 +55,11 @@ class MenuActivity:AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        myJobIsWork.isWork=true
+
+    }
 
 
     private fun eventTransactions() {

@@ -13,14 +13,9 @@ import com.lafimsize.bilimnsanlarvebulular.adapter.ContributionsAdapter
 import com.lafimsize.bilimnsanlarvebulular.databinding.FragmentMenuBinding
 import kotlinx.coroutines.Job
 
-class MenuFragment: Fragment(),ContributionsAdapter.cClickListener {
+class MenuFragment: Fragment() {
 
     private lateinit var _binding:FragmentMenuBinding
-
-    private lateinit var jobS: Job
-    private lateinit var jobA: Job
-    private lateinit var jobH: Job
-    private lateinit var jobP: Job
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,27 +37,16 @@ class MenuFragment: Fragment(),ContributionsAdapter.cClickListener {
         super.onViewCreated(view, savedInstanceState)
 
 
-        _binding.contributionRV.adapter=ContributionsAdapter(this@MenuFragment)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        _binding.contributionRV.adapter=ContributionsAdapter()
         _binding.contributionRV.layoutManager=GridLayoutManager(context,2)
         _binding.contributionRV.suppressLayout(true)
-
-
     }
 
 
-    private fun goContent(wContent:String){
-        jobA.cancel()
-        jobH.cancel()
-        jobP.cancel()
-        jobS.cancel()
-
-        val intent=Intent(this.activity,MainActivity::class.java)
-        intent.putExtra("wContent",wContent)
-        startActivity(intent)
-    }
-
-    override fun onCClicked(view: View) {
-        println(view)
-    }
 
 }

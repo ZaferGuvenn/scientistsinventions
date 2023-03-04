@@ -1,5 +1,6 @@
 package com.lafimsize.bilimnsanlarvebulular.adapter
 
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -8,19 +9,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.databinding.ContributionsBinding
+import com.lafimsize.bilimnsanlarvebulular.view.MainActivity
 
-class ContributionsAdapter(val listener:cClickListener): RecyclerView.Adapter<ContributionsAdapter.ContributionsHolder>() {
+class ContributionsAdapter: RecyclerView.Adapter<ContributionsAdapter.ContributionsHolder>() {
 
     private var vPSImages= arrayListOf(R.mipmap.alan_turing,R.mipmap.ada_lovelace,R.mipmap.albert_einstein,R.mipmap.marie_curie,R.mipmap.nikola_tesla)
     private var vPAImages= arrayListOf(R.mipmap.orhanpmk,R.mipmap.yasark,R.mipmap.oguzatay)
     private var vPHImages= arrayListOf(R.mipmap.ilberci,R.mipmap.afetinan,R.mipmap.feroz)
     private var vPPImages= arrayListOf(R.mipmap.cemalsureya,R.mipmap.nazim,R.mipmap.turgutuyar)
 
-    interface cClickListener{
-
-        fun onCClicked(view: View)
-
-    }
 
 
     private lateinit var binding:ContributionsBinding
@@ -39,7 +36,6 @@ class ContributionsAdapter(val listener:cClickListener): RecyclerView.Adapter<Co
 
     override fun onBindViewHolder(holder: ContributionsHolder, position: Int) {
         checkHolders(position)
-
     }
 
     private fun checkHolders(position: Int){
@@ -50,8 +46,8 @@ class ContributionsAdapter(val listener:cClickListener): RecyclerView.Adapter<Co
                 binding.cSlideInclude.slideVP.adapter = VPAdapter(vPSImages)
                 binding.cSlideInclude.slideVP.setBackgroundColor(Color.parseColor("#D5DFE5"))
                 binding.cNameTV.text="Bilim İnsanları"
-                binding.cNameTV.setOnClickListener {
-                    listener.onCClicked(it)
+                binding.root.setOnClickListener {
+                    goIntent("bilim")
                 }
 
             }
@@ -59,6 +55,9 @@ class ContributionsAdapter(val listener:cClickListener): RecyclerView.Adapter<Co
                 binding.cSlideInclude.slideVP.adapter = VPAdapter(vPAImages)
                 binding.cSlideInclude.slideVP.setBackgroundColor(Color.parseColor("#C9B1BD"))
                 binding.cNameTV.text="Yazar"
+                binding.root.setOnClickListener {
+                    goIntent("yazar")
+                }
 
             }
             2-> {
@@ -67,6 +66,9 @@ class ContributionsAdapter(val listener:cClickListener): RecyclerView.Adapter<Co
                 binding.cSlideInclude.slideVP.setBackgroundColor(Color.parseColor("#A5CCD1"))
 
                 binding.cNameTV.text="Tarihçi"
+                binding.root.setOnClickListener {
+                    goIntent("tarih")
+                }
             }
             3-> {
 
@@ -74,11 +76,23 @@ class ContributionsAdapter(val listener:cClickListener): RecyclerView.Adapter<Co
                 binding.cSlideInclude.slideVP.setBackgroundColor(Color.parseColor("#7F6DA7"))
 
                 binding.cNameTV.text="Şair"
+                binding.root.setOnClickListener {
+                    goIntent("sair")
+                }
             }
 
         }
 
 
+
+    }
+
+    private fun goIntent(whichIntent:String){
+        println(whichIntent)
+        val intent= Intent(binding.root.context,MainActivity::class.java)
+        intent.putExtra("whichContribution",whichIntent)
+        binding.root.context.startActivity(intent)
+        myJobIsWork.isWork=false
 
     }
 
