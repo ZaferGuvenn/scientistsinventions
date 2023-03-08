@@ -9,11 +9,12 @@
         >
 
         <TextView
+            android:id="@+id/aboutTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:text="Hakkımızda"
+            android:text="Emeği Geçenler"
             android:textAlignment="center"
 
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,6 +24,33 @@
             android:layout_margin="20dp"
             />
 
+        <TextView
+            android:id="@+id/aboutTextTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@id/aboutTitleTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            android:text="Zafer Güven"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:id="@+id/aboutTextTV2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@id/aboutTextTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            android:text="Hamza Eşsiz"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
