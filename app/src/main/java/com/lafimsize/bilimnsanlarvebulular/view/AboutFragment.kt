@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.lafimsize.bilimnsanlarvebulular.R
@@ -33,6 +34,16 @@ class AboutFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val animationForTVs=AnimationUtils.loadAnimation(context,R.anim.fall_down)
+        binding.aboutTextTV.startAnimation(animationForTVs)
+        binding.aboutTextTV2.startAnimation(animationForTVs)
 
     }
 
