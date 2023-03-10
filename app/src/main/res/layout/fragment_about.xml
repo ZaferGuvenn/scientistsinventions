@@ -42,7 +42,6 @@
             android:textSize="20sp"
 
             android:textColor="@color/white"
-            android:visibility="gone"
             />
 
         <TextView
@@ -58,8 +57,71 @@
             android:layout_margin="10dp"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:visibility="gone"
             />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:background="@color/white"
+
+            app:layout_constraintTop_toBottomOf="@id/aboutTextTV2"
+            app:layout_constraintStart_toStartOf="@id/aboutTitleTV"
+            app:layout_constraintEnd_toEndOf="@id/aboutTitleTV"
+
+            android:layout_margin="20dp"
+            />
+
+        <TextView
+            android:id="@+id/aboutTitleTV2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:text="Hakkımızda"
+            android:textAlignment="center"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view1"
+
+            android:layout_margin="20dp"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/aboutTextTV3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Uygulama Zafer Güven tarafından yazılmıştır. Sunucu ve website ile ilgili işlemler ise Hamza Eşsiz tarafından yapılmıştır."
+            android:textAlignment="center"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aboutTitleTV2"
+
+            android:layout_margin="20dp"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/contactTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#00C4FF"
+            android:textSize="25sp"
+            android:text="İletişim: deneme@gmail.com"
+            app:layout_constraintTop_toBottomOf="@id/aboutTextTV3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textAlignment="center"
+
+            android:background="@drawable/shape2"
+
+            android:paddingHorizontal="2dp"
+            android:paddingVertical="20dp"
+            android:layout_margin="20dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
