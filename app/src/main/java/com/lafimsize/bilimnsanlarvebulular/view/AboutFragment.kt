@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.databinding.FragmentAboutBinding
-import com.lafimsize.bilimnsanlarvebulular.databinding.FragmentMenuBinding
 
 class AboutFragment: Fragment() {
 
@@ -42,12 +41,13 @@ class AboutFragment: Fragment() {
         super.onResume()
 
         val animationForTVs=AnimationUtils.loadAnimation(context,R.anim.fall_down2)
-
-        binding.aboutTextTV.visibility=View.VISIBLE
-        binding.aboutTextTV2.visibility=View.VISIBLE
+        binding.container.visibility=View.VISIBLE
 
         binding.aboutTextTV.startAnimation(animationForTVs)
         binding.aboutTextTV2.startAnimation(animationForTVs)
+        binding.aboutTextTV3.startAnimation(animationForTVs)
+        binding.view1.startAnimation(animationForTVs)
+        binding.contactTV.startAnimation(animationForTVs)
 
 
 
