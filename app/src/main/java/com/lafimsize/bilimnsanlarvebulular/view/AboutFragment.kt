@@ -41,9 +41,15 @@ class AboutFragment: Fragment() {
     override fun onResume() {
         super.onResume()
 
-        val animationForTVs=AnimationUtils.loadAnimation(context,R.anim.fall_down)
+        val animationForTVs=AnimationUtils.loadAnimation(context,R.anim.fall_down2)
+
+        binding.aboutTextTV.visibility=View.VISIBLE
+        binding.aboutTextTV2.visibility=View.VISIBLE
+
         binding.aboutTextTV.startAnimation(animationForTVs)
         binding.aboutTextTV2.startAnimation(animationForTVs)
+
+
 
     }
 
