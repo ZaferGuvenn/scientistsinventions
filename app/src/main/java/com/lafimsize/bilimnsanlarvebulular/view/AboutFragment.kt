@@ -40,15 +40,32 @@ class AboutFragment: Fragment() {
     override fun onResume() {
         super.onResume()
 
+        setupAnimations()
+
+
+
+
+    }
+
+    private fun setupAnimations(){
+
+
         val animationForTVs=AnimationUtils.loadAnimation(context,R.anim.fall_down2)
         binding.container.visibility=View.VISIBLE
+
+
+
+        binding.aboutTextTV.animation.duration=500
+        binding.aboutTextTV2.animation.duration=700
+        binding.aboutTextTV3.animation.duration=900
+        binding.view1.animation.duration=1100
+        binding.contactTV.animation.duration=1300
 
         binding.aboutTextTV.startAnimation(animationForTVs)
         binding.aboutTextTV2.startAnimation(animationForTVs)
         binding.aboutTextTV3.startAnimation(animationForTVs)
         binding.view1.startAnimation(animationForTVs)
         binding.contactTV.startAnimation(animationForTVs)
-
 
 
     }
