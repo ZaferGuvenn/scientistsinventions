@@ -55,17 +55,23 @@ class AboutFragment: Fragment() {
 
 
 
-        binding.aboutTextTV.animation.duration=500
-        binding.aboutTextTV2.animation.duration=700
-        binding.aboutTextTV3.animation.duration=900
-        binding.view1.animation.duration=1100
-        binding.contactTV.animation.duration=1300
 
+        animationForTVs.duration=500
         binding.aboutTextTV.startAnimation(animationForTVs)
+
+        animationForTVs.duration=1000
         binding.aboutTextTV2.startAnimation(animationForTVs)
+
+        animationForTVs.duration=1500
         binding.aboutTextTV3.startAnimation(animationForTVs)
+
+        animationForTVs.duration=2000
         binding.view1.startAnimation(animationForTVs)
+
+        animationForTVs.duration=2500
         binding.contactTV.startAnimation(animationForTVs)
+
+
 
 
     }
