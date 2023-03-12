@@ -7,7 +7,7 @@
 
     <translate android:fromYDelta="-100%"
 
-        android:duration="2000"/>
+        android:duration="400"/>
 
 
 
