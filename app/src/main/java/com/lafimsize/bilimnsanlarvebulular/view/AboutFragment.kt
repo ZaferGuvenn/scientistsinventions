@@ -50,26 +50,24 @@ class AboutFragment: Fragment() {
     private fun setupAnimations(){
 
 
-        val animationForTVs=AnimationUtils.loadAnimation(context,R.anim.fall_down2)
+        val animationForTVs1=AnimationUtils.loadAnimation(context,R.anim.fall_down)
+        val animationForTVs2=AnimationUtils.loadAnimation(context,R.anim.fall_down2)
+        val animationForTVs3=AnimationUtils.loadAnimation(context,R.anim.fall_down3)
         binding.container.visibility=View.VISIBLE
 
 
 
 
-        animationForTVs.duration=500
-        binding.aboutTextTV.startAnimation(animationForTVs)
 
-        animationForTVs.duration=1000
-        binding.aboutTextTV2.startAnimation(animationForTVs)
+        binding.aboutTextTV.startAnimation(animationForTVs1)
 
-        animationForTVs.duration=1500
-        binding.aboutTextTV3.startAnimation(animationForTVs)
+        binding.aboutTextTV2.startAnimation(animationForTVs1)
 
-        animationForTVs.duration=2000
-        binding.view1.startAnimation(animationForTVs)
+        binding.aboutTextTV3.startAnimation(animationForTVs2)
 
-        animationForTVs.duration=2500
-        binding.contactTV.startAnimation(animationForTVs)
+        binding.view1.startAnimation(animationForTVs2)
+
+        binding.contactTV.startAnimation(animationForTVs3)
 
 
 
