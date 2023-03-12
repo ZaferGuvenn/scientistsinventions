@@ -50,9 +50,8 @@ class AboutFragment: Fragment() {
     private fun setupAnimations(){
 
 
-        val animationForTVs1=AnimationUtils.loadAnimation(context,R.anim.fall_down)
-        val animationForTVs2=AnimationUtils.loadAnimation(context,R.anim.fall_down2)
-        val animationForTVs3=AnimationUtils.loadAnimation(context,R.anim.fall_down3)
+        val animationForTVs1=AnimationUtils.loadAnimation(context,R.anim.fall_down2)
+        val animationForTVs2=AnimationUtils.loadAnimation(context,R.anim.fall_down3)
         binding.container.visibility=View.VISIBLE
 
 
@@ -67,7 +66,7 @@ class AboutFragment: Fragment() {
 
         binding.view1.startAnimation(animationForTVs2)
 
-        binding.contactTV.startAnimation(animationForTVs3)
+        binding.contactTV.startAnimation(animationForTVs2)
 
 
 
