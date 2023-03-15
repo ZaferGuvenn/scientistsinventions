@@ -14,72 +14,74 @@
     </data>
 
 
-<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginHorizontal="5dp"
-    android:id="@+id/inventionsRowConstraint"
-    android:paddingVertical="10dp"
-    android:paddingHorizontal="10dp"
-    android:layout_margin="5dp"
-
-    >
-
-    <ImageView
-        android:id="@+id/InventionsImage"
-
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/inventionsRowConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
-
-        android:background="#3F3A43"
-        android:contentDescription="Invention Image"
+        android:layout_marginHorizontal="5dp"
+        android:background="@drawable/shape6"
         android:paddingHorizontal="10dp"
-        android:paddingVertical="20dp"
 
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/InventionsName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:background="@color/black"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="2dp"
-        android:layout_marginTop="2dp"
-        android:text="@{inventions.inventionName}"
-
-        android:textAlignment="center"
-        android:textColor="@color/white"
-
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:paddingVertical="10dp"
 
 
-        app:layout_constraintEnd_toEndOf="@+id/InventionsImage"
-        app:layout_constraintStart_toStartOf="@+id/InventionsImage"
-        app:layout_constraintTop_toBottomOf="@+id/InventionsImage" />
+        >
 
-    <TextView
-        android:id="@+id/InventionsDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/InventionsImage"
 
-        android:text="@{inventions.inventionDate}"
-        android:textSize="18sp"
-        android:textStyle="bold"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="5dp"
 
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@+id/InventionsName"
-        app:layout_constraintEnd_toEndOf="@+id/InventionsName"
-        app:layout_constraintTop_toBottomOf="@+id/InventionsName"/>
+            android:background="#3F3A43"
+            android:contentDescription="Invention Image"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp"
+
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/InventionsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="2dp"
+            android:background="@color/black"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="2dp"
+            android:text="@{inventions.inventionName}"
+
+            android:textAlignment="center"
+            android:textColor="@color/white"
+
+            android:textSize="16sp"
+            android:textStyle="bold"
 
 
+            app:layout_constraintEnd_toEndOf="@+id/InventionsImage"
+            app:layout_constraintStart_toStartOf="@+id/InventionsImage"
+            app:layout_constraintTop_toBottomOf="@+id/InventionsImage" />
+
+        <TextView
+            android:id="@+id/InventionsDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@{inventions.inventionDate}"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/InventionsName"
+            app:layout_constraintStart_toStartOf="@+id/InventionsName"
+            app:layout_constraintTop_toBottomOf="@+id/InventionsName" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
