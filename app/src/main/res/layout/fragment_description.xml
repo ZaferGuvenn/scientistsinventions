@@ -10,119 +10,113 @@
             name="inventionn"
             type="com.lafimsize.bilimnsanlarvebulular.model.Inventions" />
     </data>
-<androidx.core.widget.NestedScrollView
-    android:id="@+id/nestedContainer"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.DescriptionFragment"
-    android:background="#9EA0DBED"
-    >
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="match_parent"
+        android:background="#9EA0DBED"
+        tools:context=".view.DescriptionFragment">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_marginTop="16dp"
 
-            android:scaleType="centerCrop"
-            android:background="#3F3A43"
-            android:paddingVertical="20dp"
-            android:paddingHorizontal="10dp"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="buluş resmi"
-            android:downloadwithglid="@{inventionn.inventionImage}"
-            />
-
-        <TextView
-            android:id="@+id/DescriptionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{inventionn.inventionName}"
-            android:textSize="32sp"
-            android:paddingHorizontal="50dp"
-            android:paddingVertical="0dp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-        <TextView
-            android:id="@+id/InventionsDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/DescriptionTitle"
-            android:text="@{inventionn.inventionDate}"
-            android:paddingHorizontal="50dp"
-            android:paddingVertical="0dp"
-            android:layout_marginBottom="4dp"
-            android:textStyle="italic"
-            android:textSize="24sp"
-            android:textAlignment="center"
-            />
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
-            app:layout_constraintTop_toBottomOf="@+id/InventionsDate"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintBottom_toBottomOf="@id/container"
+            android:layout_height="wrap_content"
+            android:layoutAnimation="@anim/layout_animation">
 
-            android:layout_margin="5dp"
-            >
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp"
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="#3F3A43"
+                android:contentDescription="buluş resmi"
+                android:downloadwithglid="@{inventionn.inventionImage}"
+                android:paddingHorizontal="10dp"
+
+                android:paddingVertical="20dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/DescriptionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="50dp"
+                android:paddingVertical="0dp"
+                android:text="@{inventionn.inventionName}"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <TextView
+                android:id="@+id/InventionsDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:paddingHorizontal="50dp"
+                android:paddingVertical="0dp"
+                android:text="@{inventionn.inventionDate}"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/DescriptionTitle" />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="@+id/nestedScrollView"
-                android:background="@drawable/shape3"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginBottom="20dp"
-                >
+                android:layout_height="500dp"
+                android:layout_margin="5dp"
+                app:layout_constraintBottom_toBottomOf="@id/container"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
 
-                <TextView
-                    android:id="@+id/Description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="40dp"
-                    android:paddingVertical="15dp"
-                    android:text="@{inventionn.inventionDescription}"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/InventionsDate">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/shape3"
+                    app:layout_constraintTop_toTopOf="@+id/nestedScrollView">
 
-                    android:textSize="20sp"
-
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.core.widget.NestedScrollView>
+                    <TextView
+                        android:id="@+id/Description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="40dp"
+                        android:paddingVertical="15dp"
+                        android:text="@{inventionn.inventionDescription}"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
 
 
+                        android:textSize="20sp"
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+            </androidx.core.widget.NestedScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
