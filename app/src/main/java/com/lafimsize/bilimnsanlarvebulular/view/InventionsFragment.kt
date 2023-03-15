@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.adapter.InventionsAdapter
@@ -135,7 +136,7 @@ class InventionsFragment : Fragment() {
     }
 
     private fun bindingTransactions(){
-        binding.recyclerView.layoutManager=LinearLayoutManager(context)
+        binding.recyclerView.layoutManager=GridLayoutManager(context,2)
         binding.recyclerView.adapter=adapter
 
         binding.swipeRefreshInventions.setOnRefreshListener {

@@ -17,7 +17,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
-    android:background="@drawable/shapa1"
     android:id="@+id/inventionsRowConstraint"
     android:paddingVertical="10dp"
     android:paddingHorizontal="10dp"
@@ -28,17 +27,17 @@
     <ImageView
         android:id="@+id/InventionsImage"
 
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="20dp"
-        android:scaleType="centerCrop"
-
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_margin="5dp"
-        android:background="#3F3A43"
 
+        android:background="#3F3A43"
         android:contentDescription="Invention Image"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="20dp"
+
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,24 +45,23 @@
         android:id="@+id/InventionsName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
 
+        android:background="@color/black"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="2dp"
+        android:layout_marginTop="2dp"
         android:text="@{inventions.inventionName}"
+
         android:textAlignment="center"
+        android:textColor="@color/white"
+
         android:textSize="16sp"
         android:textStyle="bold"
 
-        android:paddingVertical="2dp"
-        android:paddingHorizontal="10dp"
 
-        android:background="@color/black"
-        android:textColor="@color/white"
-
-
-        app:layout_constraintBottom_toBottomOf="@+id/InventionsImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/InventionsImage"
-        app:layout_constraintTop_toTopOf="@+id/InventionsImage" />
+        app:layout_constraintEnd_toEndOf="@+id/InventionsImage"
+        app:layout_constraintStart_toStartOf="@+id/InventionsImage"
+        app:layout_constraintTop_toBottomOf="@+id/InventionsImage" />
 
     <TextView
         android:id="@+id/InventionsDate"
