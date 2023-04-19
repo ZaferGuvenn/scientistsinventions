@@ -18,8 +18,9 @@ fun ImageView.downloadWithGlide(url:String){
 
 
 @BindingAdapter("android:downloadwithglid")
-fun downloadImage(view: ImageView,url: String){
-    view.downloadWithGlide(url)
+fun downloadImage(view: ImageView,url: String?){
+
+    view.downloadWithGlide(url?:"")
 }
 
 @BindingAdapter("app:userInputEnabled")

@@ -27,7 +27,7 @@
                 android:drawableStart="@android:drawable/ic_menu_search"
                 android:paddingHorizontal="2dp"
                 android:paddingVertical="10dp"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@color/white"
                 android:textColorHint="@color/white"

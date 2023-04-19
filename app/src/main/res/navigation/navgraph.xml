@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_scientistsFragment_to_inventionsFragment"
             app:destination="@id/inventionsFragment" />
+        <action
+            android:id="@+id/action_scientistsFragment_to_scientistAboutFragment"
+            app:destination="@id/scientistAboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/inventionsFragment"
@@ -46,5 +49,17 @@
             android:name="scientistsName"
             android:defaultValue='""'
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/scientistAboutFragment"
+        android:name="com.lafimsize.bilimnsanlarvebulular.view.ScientistAboutFragment"
+        android:label="Biyografi">
+        <argument
+            android:name="scientistsName"
+            android:defaultValue='""'
+            app:argType="string" />
+        <argument
+            android:name="scientist"
+            app:argType="com.lafimsize.bilimnsanlarvebulular.model.Scientists" />
     </fragment>
 </navigation>

@@ -17,6 +17,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class InventionsViewModel(application: Application):BaseViewModel(application) {
 
@@ -110,30 +111,40 @@ class InventionsViewModel(application: Application):BaseViewModel(application) {
 
         launch {
 
-            for (i in inventionsList.indices){
-                for (j in 0 until inventionsList.size-1-i){
-                    if (inventionsList[j].inventionDate>inventionsList[j+1].inventionDate){
-                        val temp=inventionsList[j].inventionDate
-                        inventionsList[j].inventionDate=inventionsList[j+1].inventionDate
-                        inventionsList[j+1].inventionDate=temp
+            runBlocking {
+                bubbleShort(inventionsList)
+            }
 
-                    }
+            runBlocking {
+                val dao=ScientistsInventionsDatabase(getApplication()).scientistDao()
+                dao.deleteInventions(scientistName)
+                val listLong=dao.insertAllInventions(*inventionsList.toTypedArray())
+
+                for (i in inventionsList.indices){
+                    inventionsList[i].uUidInvention=listLong[i].toInt()
+                }
+
+                sharedPreferences2.saveTimeInventions(System.nanoTime())
+
+                showInventions(inventionsList)
+            }
+
+        }
+
+    }
+
+    private fun bubbleShort(inventionsList:List<Inventions>){
+        loadingInventions.value=true
+
+        for (i in inventionsList.indices){
+            for (j in 0 until inventionsList.size-1-i){
+                if (inventionsList[j].inventionDate>inventionsList[j+1].inventionDate){
+                    val temp=inventionsList[j].inventionDate
+                    inventionsList[j].inventionDate=inventionsList[j+1].inventionDate
+                    inventionsList[j+1].inventionDate=temp
+
                 }
             }
-
-
-            val dao=ScientistsInventionsDatabase(getApplication()).scientistDao()
-            dao.deleteInventions(scientistName)
-            val listLong=dao.insertAllInventions(*inventionsList.toTypedArray())
-
-            for (i in inventionsList.indices){
-                inventionsList[i].uUidInvention=listLong[i].toInt()
-            }
-
-            sharedPreferences2.saveTimeInventions(System.nanoTime())
-
-            showInventions(inventionsList)
-
         }
 
     }

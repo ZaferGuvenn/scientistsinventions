@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.lafimsize.bilimnsanlarvebulular.model.Inventions
 import com.lafimsize.bilimnsanlarvebulular.model.Scientists
 
-@Database(entities = arrayOf(Scientists::class,Inventions::class), version = 2)
+@Database(entities = arrayOf(Scientists::class,Inventions::class), version = 6)
 abstract class ScientistsInventionsDatabase: RoomDatabase(){
 
     abstract fun scientistDao():IScientistsDao
@@ -24,7 +24,10 @@ abstract class ScientistsInventionsDatabase: RoomDatabase(){
             }
         }
 
-        fun makeDatabase(context: Context)=Room.databaseBuilder(context,ScientistsInventionsDatabase::class.java,"ScientistsDatabase").build()
+        fun makeDatabase(context: Context)=Room
+            .databaseBuilder(context,ScientistsInventionsDatabase::class.java,"ScientistsDatabase")
+            .fallbackToDestructiveMigration()
+            .build()
 
     }
 

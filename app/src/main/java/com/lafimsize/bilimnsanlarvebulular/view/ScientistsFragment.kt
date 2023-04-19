@@ -177,7 +177,7 @@ class ScientistsFragment : Fragment() {
         alertDialog.setMessage("Önceden yüklenmiş hiçbir veri bulunamadı. Lütfen internet bağlantınızı aktifleştirip tekrar deneyin!")
         alertDialog.setCancelable(false)
         alertDialog.setPositiveButton("Yeniden Dene"){ _ , _ ->
-            viewModel.getAllData()
+            viewModel.refreshDataRetrofit()
         }
         alertDialog.show()
     }

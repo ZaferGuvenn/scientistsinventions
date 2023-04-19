@@ -12,6 +12,8 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class Scientists(
 
+    //https://raw.githubusercontent.com/ZaferGuvenn/KotlinApp5-Scientists/main/scientists.json
+
     @ColumnInfo(name = "scientistsname")
     @SerializedName("scientists_name")
     val scientistsName:String,
@@ -20,11 +22,15 @@ data class Scientists(
     val scientistsBirthDeath:String,
     @ColumnInfo(name = "scientists_image")
     @SerializedName("scientists_image")
-    val scientistsImage:String
+    val scientistsImage:String,
+
+    @ColumnInfo(name= "scientistsLife")
+    @SerializedName("scientists_life")
+    val scientistsLife:String
 
 
 
-)
+):java.io.Serializable
 {
     @PrimaryKey(autoGenerate = true)
     var uUidScientist:Int=0

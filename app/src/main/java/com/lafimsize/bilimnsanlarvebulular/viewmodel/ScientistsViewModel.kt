@@ -66,7 +66,7 @@ class ScientistsViewModel(application: Application):BaseViewModel(application){
 
                         Toast.makeText(getApplication(),"Veriler güncellendi!",Toast.LENGTH_SHORT).show()
 
-                        bubbleShortAndStoreInRoom(tArrayList)
+                        storeInRoom(tArrayList)
 
                     }
 
@@ -95,7 +95,8 @@ class ScientistsViewModel(application: Application):BaseViewModel(application){
 
             if (dao.getAllScientists().isEmpty()){
                 Toast.makeText(getApplication(),"Önceden yüklenmiş veri yok!",Toast.LENGTH_SHORT).show()
-                alertDialog.value=true
+                //alertDialog.value=true
+                refreshDataRetrofit()
             }else{
                 scientistList.addAll(dao.getAllScientists())
                 showScientists(scientistList)
@@ -115,42 +116,45 @@ class ScientistsViewModel(application: Application):BaseViewModel(application){
         loadingProgress.value=false
     }
 
-    private fun bubbleShortAndStoreInRoom(scientistsList:ArrayList<Scientists>){
+    private fun storeInRoom(scientistsList:ArrayList<Scientists>){
 
         launch {
-            loadingProgress.value=true
 
-            for (i in 0 until scientistsList.size){
-                var temp:Scientists
-                for (j in 0 until scientistsList.size-1-i){
-                    val firstBirth= scientistsList[j].scientistsBirthDeath.split("-")[0].toLong()
-                    val secondBirth= scientistsList[j+1].scientistsBirthDeath.split("-")[0].toLong()
-                    if (firstBirth>secondBirth){
-                        temp=scientistsList[j]
-                        scientistsList[j]=scientistsList[j+1]
-                        scientistsList[j+1]=temp
-                    }
+            runBlocking { bubbleShort(scientistsList) }
+
+            runBlocking {
+                val dao=ScientistsInventionsDatabase(getApplication()).scientistDao()
+
+                dao.deleteScientists()
+                val listLong=dao.insertAllScientists(*scientistsList.toTypedArray())
+
+                for(i in listLong.indices){
+                    scientistsList[i].uUidScientist=listLong[i].toInt()
                 }
+
+                sharedPreferences.saveTime(System.nanoTime())
+                showScientists(scientistsList)
             }
-
-
-            val dao=ScientistsInventionsDatabase(getApplication()).scientistDao()
-
-
-            dao.deleteScientists()
-            val listLong=dao.insertAllScientists(*scientistsList.toTypedArray())
-
-            for(i in listLong.indices){
-                scientistsList[i].uUidScientist=listLong[i].toInt()
-            }
-
-            sharedPreferences.saveTime(System.nanoTime())
-
-            showScientists(scientistsList)
-
 
         }
 
+    }
+
+    private fun bubbleShort(scientistsList:ArrayList<Scientists>){
+        loadingProgress.value=true
+
+        for (i in 0 until scientistsList.size){
+            var temp:Scientists
+            for (j in 0 until scientistsList.size-1-i){
+                val firstBirth= scientistsList[j].scientistsBirthDeath.split("-")[0].toLong()
+                val secondBirth= scientistsList[j+1].scientistsBirthDeath.split("-")[0].toLong()
+                if (firstBirth>secondBirth){
+                    temp=scientistsList[j]
+                    scientistsList[j]=scientistsList[j+1]
+                    scientistsList[j+1]=temp
+                }
+            }
+        }
     }
 
 

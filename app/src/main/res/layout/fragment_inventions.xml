@@ -16,6 +16,27 @@
             android:layout_height="match_parent"
             tools:context=".view.InventionsFragment">
 
+            <EditText
+                android:id="@+id/etSearchInvention"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                android:hint="Ara.."
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:paddingHorizontal="2dp"
+                android:paddingVertical="10dp"
+                android:textSize="30sp"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/white"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+
+                />
+
+
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -25,7 +46,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/etSearchInvention" />
 
 
             <ProgressBar

@@ -9,6 +9,7 @@ import retrofit2.http.Path
 interface ScientistsAPI {
 
 
+    //https://raw.githubusercontent.com/ZaferGuvenn/KotlinApp5-Scientists/main/scientists.json
     @GET("/ZaferGuvenn/KotlinApp5-Scientists/main/scientists.json")
     fun getScientists():Single<List<Scientists>>
 

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -16,7 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.adapter.InventionsAdapter
 import com.lafimsize.bilimnsanlarvebulular.databinding.FragmentInventionsBinding
+import com.lafimsize.bilimnsanlarvebulular.model.Inventions
 import com.lafimsize.bilimnsanlarvebulular.viewmodel.InventionsViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 class InventionsFragment : Fragment() {
@@ -160,21 +164,27 @@ class InventionsFragment : Fragment() {
             viewModel.getInventionsFromRoom(scientistsName)
         }
 
+        binding.etSearchInvention.addTextChangedListener {searchText->
+
+            var job: Job?=null
+            job?.cancel()
+
+            job=lifecycleScope.launch {
+
+                val newList=viewModel.mutableInventionsList.value?.filter {
+                    it.inventionName.contains(searchText?.toString()?:"",ignoreCase = true)
+                }?: listOf()
+
+                var filteredArrayList= ArrayList<Inventions>()
+                filteredArrayList.addAll(newList)
+                adapter.updateInventions(filteredArrayList)
+
+            }
+
+        }
+
     }
 
-    /*private fun showAlertDialogMsg(){
 
-        val alertDialog= AlertDialog.Builder(context)
-
-        alertDialog.setTitle("Çevrimdışı Mod Başlatılamadı!")
-        alertDialog.setMessage("Önceden yüklenmiş hiçbir veri bulunamadı. Lütfen internet bağlantınızı aktifleştirip tekrar deneyin!")
-        alertDialog.setCancelable(false)
-        alertDialog.setPositiveButton("Yeniden Dene"){ _ , _ ->
-            viewModel.getAllData(scientistsName)
-        }
-        alertDialog.show()
-
-
-    }*/
 
 }

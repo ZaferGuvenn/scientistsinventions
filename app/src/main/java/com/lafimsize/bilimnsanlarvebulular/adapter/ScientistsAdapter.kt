@@ -37,7 +37,10 @@ class ScientistsAdapter(val scientistsList:ArrayList<Scientists>):RecyclerView.A
 
         holder.binding.scientistsViewConstrint.setOnClickListener {
             val scientistsName=holder.binding.ScientistsName.text.toString().replace(" ","-")
-            val action=ScientistsFragmentDirections.actionScientistsFragmentToInventionsFragment(0L,scientistsName)
+            //val action=ScientistsFragmentDirections.actionScientistsFragmentToInventionsFragment(0L,scientistsName)
+
+            val action=ScientistsFragmentDirections.actionScientistsFragmentToScientistAboutFragment(scientistsList[position],scientistsName)
+
             Navigation.findNavController(it).navigate(action)
             println(scientistsName)
         }
