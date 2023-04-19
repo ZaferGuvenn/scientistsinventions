@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -17,7 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.adapter.ScientistsAdapter
 import com.lafimsize.bilimnsanlarvebulular.databinding.FragmentScientistsBinding
+import com.lafimsize.bilimnsanlarvebulular.model.Scientists
 import com.lafimsize.bilimnsanlarvebulular.viewmodel.ScientistsViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class ScientistsFragment : Fragment() {
@@ -135,6 +140,32 @@ class ScientistsFragment : Fragment() {
             binding.renewScientists.visibility=View.GONE
             binding.offlineBtn.visibility=View.GONE
             viewModel.getDataFromRoom()
+        }
+
+
+        binding.edSearchScientist.addTextChangedListener {searchText->
+
+            var job: Job?=null
+
+            job?.cancel()
+
+            job=lifecycleScope.launch {
+                delay(100)
+
+                val listScientistFiltered=viewModel.mutableScientistsList.value?.let { scientistsArrayList ->
+
+                    scientistsArrayList.filter {
+                        it.scientistsName.contains(searchText.toString()?:"",ignoreCase = true)
+                    }
+
+                }?: listOf()
+
+                val listScientistFilteredArrayList= arrayListOf<Scientists>()
+                listScientistFilteredArrayList.addAll(listScientistFiltered)
+
+                adapter.updateScientists(listScientistFilteredArrayList)
+            }
+
         }
     }
 

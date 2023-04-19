@@ -74,7 +74,7 @@ class MenuActivity:AppCompatActivity() {
                 }else{
                     timeBack=true
                     println(timeBack)
-                    Toast.makeText(applicationContext,"Çıkmak için bir daha tıklayın!",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,"Çıkmak için bir daha geri gidin!",Toast.LENGTH_SHORT).show()
 
                     backPresJob=lifecycleScope.launchWhenResumed {
 
