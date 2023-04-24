@@ -14,10 +14,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.adapter.InventionsAdapter
 import com.lafimsize.bilimnsanlarvebulular.databinding.FragmentInventionsBinding
 import com.lafimsize.bilimnsanlarvebulular.model.Inventions
+import com.lafimsize.bilimnsanlarvebulular.util.SelectedScientist
 import com.lafimsize.bilimnsanlarvebulular.viewmodel.InventionsViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -30,8 +32,7 @@ class InventionsFragment : Fragment() {
     private lateinit var binding:FragmentInventionsBinding
     private lateinit var adapter:InventionsAdapter
 
-    private var uuid=0L
-    private var scientistsName=""
+    private var scientistName= ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +53,8 @@ class InventionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        scientistName=SelectedScientist.selectedScientist?.scientistsName?.replace(" ","-")?:""
 
         argumentTransactions()
         bindingTransactions()
@@ -125,18 +128,12 @@ class InventionsFragment : Fragment() {
     }
 
     private fun argumentTransactions(){
-        arguments?.let {
-            uuid=InventionsFragmentArgs.fromBundle(it).scientistsUuid
-            scientistsName=InventionsFragmentArgs.fromBundle(it).scientistsNmae
-        }
 
-        val fragmentLabel=scientistsName.replace("-"," ")+" buluşları"
-        (activity as AppCompatActivity).supportActionBar?.title = fragmentLabel
 
         viewModel= ViewModelProvider(this)[InventionsViewModel::class.java]
-        viewModel.getAllData(scientistsName)
+        viewModel.getAllData(scientistName?:"")
 
-        adapter= InventionsAdapter(arrayListOf(),scientistsName)
+        adapter= InventionsAdapter(arrayListOf())
     }
 
     private fun bindingTransactions(){
@@ -146,14 +143,16 @@ class InventionsFragment : Fragment() {
         binding.swipeRefreshInventions.setOnRefreshListener {
             binding.swipeRefreshInventions.isRefreshing=false
             binding.offlineBtnInventions.visibility=View.GONE
-            viewModel.getInventionsFromRetrofit(scientistsName,true)
+            viewModel.getInventionsFromRetrofit(
+                scientistName?:"",true)
         }
 
         binding.renewInventions.setOnClickListener {
 
             binding.renewInventions.visibility=View.GONE
             binding.offlineBtnInventions.visibility=View.GONE
-            viewModel.getInventionsFromRetrofit(scientistsName,true)
+            viewModel.getInventionsFromRetrofit(
+                scientistName?:"",true)
         }
 
         binding.offlineBtnInventions.setOnClickListener {
@@ -161,7 +160,8 @@ class InventionsFragment : Fragment() {
 
             binding.renewInventions.visibility=View.GONE
             binding.offlineBtnInventions.visibility=View.GONE
-            viewModel.getInventionsFromRoom(scientistsName)
+            viewModel.getInventionsFromRoom(
+                scientistName?:"")
         }
 
         binding.etSearchInvention.addTextChangedListener {searchText->

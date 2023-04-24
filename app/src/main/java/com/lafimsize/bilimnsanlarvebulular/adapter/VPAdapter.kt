@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.lafimsize.bilimnsanlarvebulular.R
@@ -58,7 +59,7 @@ class VPAdapter(val cImages:ArrayList<Int>):RecyclerView.Adapter<VPAdapter.VPVie
                 if (p==cImages.size){
                     p=0
                 }
-                binding.slideIV.setImageResource(cImages.get(p))
+                binding.slideIV.setImageResource(cImages[p])
                 val randomAnnimation=annimationsList.random()
                 binding.slideIV.startAnimation(randomAnnimation)
                 p=p+1

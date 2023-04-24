@@ -44,8 +44,8 @@ class ContributionsAdapter: RecyclerView.Adapter<ContributionsAdapter.Contributi
         when(position){
             0-> {
                 binding.cSlideInclude.slideVP.adapter = VPAdapter(vPSImages)
-                binding.cSlideInclude.slideVP.setBackgroundColor(Color.parseColor("#D5DFE5"))
-                binding.cNameTV.text="Bilim İnsanları"
+                binding.cSlideInclude.slideVP.setBackgroundColor(Color.parseColor("#75CFE5"))
+                binding.cNameTV.text="Bilim İnsanı"
                 binding.root.setOnClickListener {
                     goIntent("bilim")
                 }

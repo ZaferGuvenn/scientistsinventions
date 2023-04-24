@@ -36,20 +36,24 @@ class InventionsViewModel(application: Application):BaseViewModel(application) {
     //private val nanoTime=7*24*60*60*1000L*1000L*1000L//1 hafta
     //private val nanoTime=0*1000L*1000L*1000L//0 saniye
 
-    fun getAllData(inventionsName: String){
+    fun getAllData(scientistsName: String){
         offlineBtnIsVisible.value=false
 
+        println(scientistsName+"fda")
+
         launch {
-            val dao=ScientistsInventionsDatabase(getApplication()).scientistDao().getScientistsInventions(inventionsName)
+            val dao=ScientistsInventionsDatabase(getApplication())
+                .scientistDao().getScientistsInventions(scientistsName)
+
             if (dao.isEmpty()){
-                getInventionsFromRetrofit(inventionsName,false)
+                getInventionsFromRetrofit(scientistsName,false)
             }else{
-                getInventionsFromRoom(inventionsName)
+                getInventionsFromRoom(scientistsName)
             }
         }
     }
 
-    fun getInventionsFromRetrofit(inventionsName:String,forrefressing:Boolean){
+    fun getInventionsFromRetrofit(inventionsName:String,forRefressing:Boolean){
 
         loadingInventions.value=true
 
@@ -68,7 +72,7 @@ class InventionsViewModel(application: Application):BaseViewModel(application) {
                         errorInventionsMsg.value=true
                         loadingInventions.value=false
 
-                        if (forrefressing){
+                        if (forRefressing){
                             offlineBtnIsVisible.value=true
                         }
                         e.printStackTrace()

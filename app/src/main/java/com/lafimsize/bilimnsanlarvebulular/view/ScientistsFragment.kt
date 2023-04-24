@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.adapter.ScientistsAdapter
 import com.lafimsize.bilimnsanlarvebulular.databinding.FragmentScientistsBinding
@@ -23,6 +24,7 @@ import com.lafimsize.bilimnsanlarvebulular.viewmodel.ScientistsViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
 
 
 class ScientistsFragment : Fragment() {
@@ -58,7 +60,10 @@ class ScientistsFragment : Fragment() {
         bindingTransactions()
         observeLiveData()
 
+
+
     }
+
 
     private fun observeLiveData(){
 

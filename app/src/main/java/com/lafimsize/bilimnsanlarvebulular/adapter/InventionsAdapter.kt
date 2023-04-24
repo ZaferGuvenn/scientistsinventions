@@ -11,7 +11,7 @@ import com.lafimsize.bilimnsanlarvebulular.model.Inventions
 import com.lafimsize.bilimnsanlarvebulular.util.downloadWithGlide
 import com.lafimsize.bilimnsanlarvebulular.view.InventionsFragmentDirections
 
-class InventionsAdapter(val inventionsList:ArrayList<Inventions>,val inventionScientistsName:String): RecyclerView.Adapter<InventionsAdapter.InventionsViewHolder>() {
+class InventionsAdapter(val inventionsList:ArrayList<Inventions>): RecyclerView.Adapter<InventionsAdapter.InventionsViewHolder>() {
 
     private lateinit var binding:InventionsRowBinding
 
@@ -33,7 +33,8 @@ class InventionsAdapter(val inventionsList:ArrayList<Inventions>,val inventionSc
         holder.binding.inventionsRowConstraint.setOnClickListener {
             val selectedInventions=inventionsList[position]
 
-            val action=InventionsFragmentDirections.actionInventionsFragmentToDescriptionFragment(selectedInventions,inventionScientistsName)
+            val action=InventionsFragmentDirections
+                .actionInventionsFragmentToDescriptionFragment(selectedInventions)
             Navigation.findNavController(it).navigate(action)
         }
 

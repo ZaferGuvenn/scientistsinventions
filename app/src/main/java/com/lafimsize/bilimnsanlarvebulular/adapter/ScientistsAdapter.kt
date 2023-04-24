@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.databinding.ScientistsRowBinding
 import com.lafimsize.bilimnsanlarvebulular.model.Scientists
+import com.lafimsize.bilimnsanlarvebulular.util.SelectedScientist
 import com.lafimsize.bilimnsanlarvebulular.util.downloadWithGlide
 import com.lafimsize.bilimnsanlarvebulular.view.ScientistsFragment
 import com.lafimsize.bilimnsanlarvebulular.view.ScientistsFragmentDirections
@@ -36,13 +37,11 @@ class ScientistsAdapter(val scientistsList:ArrayList<Scientists>):RecyclerView.A
         holder.binding.ScientistsImage.downloadWithGlide(scientistsList.get(position).scientistsImage)
 
         holder.binding.scientistsViewConstrint.setOnClickListener {
-            val scientistsName=holder.binding.ScientistsName.text.toString().replace(" ","-")
-            //val action=ScientistsFragmentDirections.actionScientistsFragmentToInventionsFragment(0L,scientistsName)
 
-            val action=ScientistsFragmentDirections.actionScientistsFragmentToScientistAboutFragment(scientistsList[position],scientistsName)
-
+            SelectedScientist.selectedScientist=scientistsList[position]
+            val action=ScientistsFragmentDirections.actionScientistsFragmentToScientistAboutFragment()
             Navigation.findNavController(it).navigate(action)
-            println(scientistsName)
+
         }
 
     }

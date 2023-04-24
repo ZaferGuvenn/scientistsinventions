@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import com.lafimsize.bilimnsanlarvebulular.R
 import com.lafimsize.bilimnsanlarvebulular.databinding.FragmentDescriptionBinding
+import com.lafimsize.bilimnsanlarvebulular.util.SelectedScientist
 import com.lafimsize.bilimnsanlarvebulular.util.downloadWithGlide
 import com.lafimsize.bilimnsanlarvebulular.viewmodel.DescriptionsViewModel
 
@@ -42,9 +43,8 @@ class DescriptionFragment : Fragment() {
             val selectedInvention=DescriptionFragmentArgs.fromBundle(it).inventions
             binding.inventionn=selectedInvention
 
-            val scientistsName=DescriptionFragmentArgs.fromBundle(it).scientistsName.replace("-"," ")
-
-            (activity as AppCompatActivity).supportActionBar?.setTitle(scientistsName+" buluşları")
+            (activity as AppCompatActivity).supportActionBar?.
+            setTitle(SelectedScientist.selectedScientist?.scientistsName+" Buluşları")
 
         }
 

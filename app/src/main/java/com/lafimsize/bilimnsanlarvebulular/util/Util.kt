@@ -4,8 +4,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
+import com.lafimsize.bilimnsanlarvebulular.model.Scientists
 
 fun ImageView.downloadWithGlide(url:String){
 
@@ -26,4 +25,11 @@ fun downloadImage(view: ImageView,url: String?){
 @BindingAdapter("app:userInputEnabled")
 fun userInputForVP(view:ViewPager2,doYouWantIt:Boolean){
     view.isUserInputEnabled=doYouWantIt
+}
+
+object SelectedScientist{
+
+    var selectedScientist:Scientists?=null
+
+
 }
