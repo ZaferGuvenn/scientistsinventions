@@ -171,11 +171,14 @@ class InventionsFragment : Fragment() {
 
             job=lifecycleScope.launch {
 
+                val willSearch=searchText?.toString()?.replace("\\s+".toRegex()," ")?.trim()?:""
+
+                println(willSearch)
                 val newList=viewModel.mutableInventionsList.value?.filter {
-                    it.inventionName.contains(searchText?.toString()?:"",ignoreCase = true)
+                    it.inventionName.contains(willSearch,ignoreCase = true)
                 }?: listOf()
 
-                var filteredArrayList= ArrayList<Inventions>()
+                val filteredArrayList= ArrayList<Inventions>()
                 filteredArrayList.addAll(newList)
                 adapter.updateInventions(filteredArrayList)
 
