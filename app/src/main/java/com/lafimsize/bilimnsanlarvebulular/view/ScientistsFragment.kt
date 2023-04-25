@@ -156,12 +156,13 @@ class ScientistsFragment : Fragment() {
 
             job=lifecycleScope.launch {
                 delay(100)
+                val willSearch=searchText?.toString()?.replace("\\s+".toRegex()," ")?.trim()?:""
 
                 val listScientistFiltered=viewModel.mutableScientistsList.value?.let { scientistsArrayList ->
-
                     scientistsArrayList.filter {
-                        it.scientistsName.contains(searchText.toString()?:"",ignoreCase = true)
+                        it.scientistsName.contains(willSearch,ignoreCase = true)
                     }
+
 
                 }?: listOf()
 
