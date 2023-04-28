@@ -116,11 +116,11 @@ class ScientistsViewModel(application: Application):BaseViewModel(application){
         loadingProgress.value=false
     }
 
-    private fun storeInRoom(scientistsList:ArrayList<Scientists>){
+    fun storeInRoom(scientistsList:ArrayList<Scientists>){
 
         launch {
 
-            runBlocking { bubbleShort(scientistsList) }
+            runBlocking { bubbleSort(scientistsList) }
 
             runBlocking {
                 val dao=ScientistsInventionsDatabase(getApplication()).scientistDao()
@@ -140,7 +140,7 @@ class ScientistsViewModel(application: Application):BaseViewModel(application){
 
     }
 
-    private fun bubbleShort(scientistsList:ArrayList<Scientists>){
+    fun bubbleSort(scientistsList:ArrayList<Scientists>){
         loadingProgress.value=true
 
         for (i in 0 until scientistsList.size){

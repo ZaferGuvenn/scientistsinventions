@@ -116,7 +116,7 @@ class InventionsViewModel(application: Application):BaseViewModel(application) {
         launch {
 
             runBlocking {
-                bubbleShort(inventionsList)
+                bubbleSort(inventionsList)
             }
 
             runBlocking {
@@ -137,7 +137,7 @@ class InventionsViewModel(application: Application):BaseViewModel(application) {
 
     }
 
-    private fun bubbleShort(inventionsList:List<Inventions>){
+    private fun bubbleSort(inventionsList:List<Inventions>){
         loadingInventions.value=true
 
         for (i in inventionsList.indices){
